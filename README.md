@@ -46,6 +46,18 @@ GEMINI_API_KEY = "Your Gemini API key"
 ```
 然後執行 `main.py`。
 
+## 部屬機器人
+1. 打開 [Discord Developer](https://discord.com/developers/applications)。
+
+2. 點選左側 `Application` ，再點選剛剛創建的機器人。
+
+3. 點選左側 `OAuth2` 下拉選項的 `URL Generator`。
+
+4. `SCOPE` 選項選擇 `bot`，`BOT PERMISSIONS` 選項則是機器人需要的權限。基本上只要勾選 `Send Message` 就可以了，不確定的話就把 `TEXT PERMISSIONS` 這一行全勾選了。
+
+5. 下滑至 `GENERATED URL`，前往這個網址並將機器人加入到你的伺服器中。
+
+
 ## 指令集
 
 指令 | 說明
