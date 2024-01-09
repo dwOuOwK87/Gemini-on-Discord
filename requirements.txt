@@ -1,0 +1,5 @@
+google-generativeai == 0.3.2
+discord.py == 2.3.2
+python-dotenv == 1.0.0
+Flask == 3.0.0
+pillow == 10.2.0

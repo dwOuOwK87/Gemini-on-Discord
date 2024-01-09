@@ -1,0 +1,9 @@
+# dotenv enviroment
+.env
+
+# caches
+__pycache__/
+*.pyc
+
+# My TODO
+TODO.txt
