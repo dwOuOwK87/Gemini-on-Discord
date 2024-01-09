@@ -11,6 +11,7 @@ import settings
 from src.gemini import Gemini
 from src.model import GeminiModel
 from src.memory import Memory
+from src.logger import logger
 
 
 class GenerativeAI(commands.Cog):
@@ -45,6 +46,8 @@ class GenerativeAI(commands.Cog):
         await interaction.response.defer(ephemeral=True)
         await interaction.followup.send(f'**Reset Gemini conversation history**')
 
+        logger.info(f"User '{interaction.user.name}' used 'reset'")
+
 
     @discord.app_commands.command(name="chat", description = "Chat with generative AI")
     @discord.app_commands.describe(message = "message...")
@@ -58,6 +61,8 @@ class GenerativeAI(commands.Cog):
         response = await self.gemini.get_response(interaction.user.id, message)
 
         await interaction.followup.send(f'### - You Asked:\n{message}\n### - Response:\n{response}')
+
+        logger.info(f"User '{interaction.user.name}' used 'chat'")
         
 
     
@@ -79,6 +84,8 @@ class GenerativeAI(commands.Cog):
             await interaction.followup.send(f'### - You Asked:\n{message}\n### - Response:\n{response}\n\n{image.url}')
         else:
             await interaction.followup.send(f"### - Response:\n{response}\n\n{image.url}")
+
+        logger.info(f"User '{interaction.user.name}' used 'see'")
         
 
            

@@ -20,3 +20,4 @@ GEMINI_MEMORIES_CAPACITY = configs["GEMINI_MEMORIES_CAPACITY"]
 
 BASE_DIR = pathlib.Path(__file__).parent
 COGS_DIR = BASE_DIR / "cogs"
+LOGS_DIR = BASE_DIR / "logs"
