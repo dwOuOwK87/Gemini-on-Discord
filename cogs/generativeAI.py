@@ -3,16 +3,15 @@ from discord.ext import commands
 import google.generativeai as genai
 from typing import Optional
 import requests
-from io import BytesIO
 from PIL import Image
+from io import BytesIO
 
 import settings
 
 from src.gemini import Gemini
 from src.model import GeminiModel
 from src.memory import Memory
-
-
+from src.logger import logger
 
 
 class GenerativeAI(commands.Cog):
@@ -38,14 +37,16 @@ class GenerativeAI(commands.Cog):
         )
 
 
-    @discord.app_commands.command(name="reset", description="Resets memories")
+    @discord.app_commands.command(name="reset", description="Reset memories")
     async def reset(self, interaction: discord.Interaction):
         if interaction.user == self.bot.user:
             return
         
         self.gemini.clear_memory(interaction.user.id)
         await interaction.response.defer(ephemeral=True)
-        await interaction.followup.send(f'> **Reset Gemini conversation history**')
+        await interaction.followup.send(f'**Reset Gemini conversation history**')
+
+        logger.info(f"User '{interaction.user.name}' used 'reset'")
 
 
     @discord.app_commands.command(name="chat", description = "Chat with generative AI")
@@ -55,8 +56,13 @@ class GenerativeAI(commands.Cog):
             return
         
         await interaction.response.defer()
+
+        message = message.strip()
         response = await self.gemini.get_response(interaction.user.id, message)
-        await interaction.followup.send(f'> **{message}**\n\n{response}')
+
+        await interaction.followup.send(f'### - You Asked:\n{message}\n### - Response:\n{response}')
+
+        logger.info(f"User '{interaction.user.name}' used 'chat'")
         
 
     
@@ -67,18 +73,21 @@ class GenerativeAI(commands.Cog):
             return
         
         await interaction.response.defer()
-        image_data = BytesIO(requests.get(image.url).content)
-        response = await self.gemini.get_response_from_image(message, Image.open(image_data))
 
-        if message is None:
-            await interaction.followup.send(f"{response}\n\n{image.url}")
+        if message is not None:
+            message = message.strip()
+
+        image_object = Image.open(BytesIO(requests.get(image.url).content))
+        response = await self.gemini.get_response_from_image(message, image_object)
+
+        if message is not None:
+            await interaction.followup.send(f'### - You Asked:\n{message}\n### - Response:\n{response}\n\n{image.url}')
         else:
-            await interaction.followup.send(f'> **{message}**\n\n{response}\n\n{image.url}')
+            await interaction.followup.send(f"### - Response:\n{response}\n\n{image.url}")
 
-
-
-
+        logger.info(f"User '{interaction.user.name}' used 'see'")
         
+
            
 async def setup(bot: commands.Bot):
     await bot.add_cog(GenerativeAI(bot))

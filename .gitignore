@@ -7,3 +7,7 @@ __pycache__/
 
 # My TODO
 TODO.txt
+
+# logs
+logs/
+*.log
