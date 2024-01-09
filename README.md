@@ -1,7 +1,7 @@
 # Gemini on Discord
 
 ## 介紹
-在輸入框中輸入 `/chat`，就會出現 `message` 欄位，輸入訊息即可與 Gemini 對話。但 `message` 只能讀取單行文字，需要多行輸入的請用 `?chat {message}` 去呼叫機器人。
+在輸入框中輸入 `/chat`，就會出現 `message` 欄位，輸入訊息即可與 Gemini 對話。
 
 也能讀取圖片，在輸入框中輸入 `/see`，會出現 `image` 欄位，只要加上附件就好。也有 `message` 欄位，可選。注意讀取圖片**沒有記憶功能**。
 
@@ -51,6 +51,5 @@ GEMINI_API_KEY = "Your Gemini API key"
 指令 | 說明
 ---|---
 /chat| 在輸入框輸入 `/chat` 後會出現 `message` 欄位，送出後調用 `gemini-pro`。
-?chat| 輸入 `?chat` 之後空一格，後方輸入文字，支援多行輸入。
 /reset| 系統會自動記錄你最新的 10 則對話紀錄，使用 `/reset` 將其全部清除。
 /see| 在輸入框輸入 `/see` 後會出現 `image`，附加文件後可以選擇要不要在 `message` 欄位附加訊息，送出後調用 `gemini-pro-vision`。
