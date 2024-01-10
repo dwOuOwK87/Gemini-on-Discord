@@ -1,5 +1,9 @@
 # Gemini on Discord
 
+中文 | [English](README.en.md)
+
+[![license](https://img.shields.io/pypi/l/ansicolortags.svg)](LICENSE)
+
 ## 介紹
 在輸入框中輸入 `/chat`，就會出現 `message` 欄位，輸入訊息即可與 Gemini 對話。
 
@@ -8,7 +12,7 @@
 ## 專案設置
 
 ### 創建虛擬環境
-我使用的 python 版本是 [3.10.13](https://www.python.org/downloads/release/python-31012/)。
+我使用的 Python 版本是 [3.10.13](https://www.python.org/downloads/release/python-31012/)。
 
 以任何方式創建虛擬環境，之後執行
 ```
@@ -32,11 +36,12 @@ pip install requirements.txt
 
     2. 點選左側的 `Application`，再點選右上方的 `New Application`，輸入名稱，同意條款並創建。
 
-    3. 點選左方的 `Bot`，再點選右方的 `Add Bot`，已經申請過的則沒有 `Add Bot`。
+    3. 點選左方的 `Bot`，再點選右方的 `Add Bot`。
 
     4. 往下滑將 `MESSAGE CONTENT INTENT` 的選項開啟。
 
-    5. 往上滑選擇 `View Token`，如果有申請過了則是 `Reset Token`
+    5. 往上滑選擇 `View Token`，如果有申請過了則是 `Reset Token`，之後複製 API key 就可以了。
+
 
 ### 執行
 在專案的根目錄下創建 `.env` 文件，並按照下列範例輸入你剛剛申請的 API key
