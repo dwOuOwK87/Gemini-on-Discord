@@ -49,7 +49,7 @@ Create `.env` in the root directory of the project, and modify it like this
 DISCORD_API_KEY = "Your Discord Bot Token"
 GEMINI_API_KEY = "Your Gemini API key"
 ```
-After that, execute `main.py`。
+After that, execute `main.py`.
 
 ## Set up Discord Bot on your server
 1. Go to [Discord Developer](https://discord.com/developers/applications).
